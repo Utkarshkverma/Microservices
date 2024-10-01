@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  accounts:
+    image: "vermau2k01053/accounts:v1"
+    container_name: "accounts-ms"
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - QBank
+
+
+  loans:
+    image: "vermau2k01053/loans:v1"
+    container_name: "loans-ms"
+    ports:
+      - "8086:8086"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - QBank
+
+
+  cards:
+    image: "vermau2k01053/cards:v1"
+    container_name: "cards-ms"
+    ports:
+      - "8085:8085"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - QBank
+
+
+networks:
+  QBank:
+    driver: "bridge"
