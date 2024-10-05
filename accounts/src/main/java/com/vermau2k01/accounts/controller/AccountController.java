@@ -1,6 +1,7 @@
 package com.vermau2k01.accounts.controller;
 
 import com.vermau2k01.accounts.constants.AppConstants;
+import com.vermau2k01.accounts.dto.AccountContactInformationDto;
 import com.vermau2k01.accounts.dto.CustomerDto;
 import com.vermau2k01.accounts.dto.ErrorResponseDto;
 import com.vermau2k01.accounts.dto.ResponseDto;
@@ -14,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,11 +33,12 @@ import org.springframework.web.bind.annotation.*;
 )
 public class AccountController {
 
-    //@Value("${build.version}")
-    private String buildVersion = "2.2";
-
     private final IAccountService accountService;
+    private final AccountContactInformationDto accountContactInformationDto;
     private final Environment environment;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
 
     @Operation(
@@ -168,28 +171,28 @@ public class AccountController {
         }
     }
 
-//    @Operation(
-//            summary = "Get Build version",
-//            description = "Get Build versions details of the accounts microservice"
-//    )
-//    @ApiResponses({
-//            @ApiResponse(
-//                    responseCode = "200",
-//                    description = "HTTP Status OK"
-//            ),
-//            @ApiResponse(
-//                    responseCode = "500",
-//                    description = "HTTP Status Internal Server Error",
-//                    content = @Content(
-//                            schema = @Schema(implementation = ErrorResponseDto.class)
-//                    )
-//            )
-//    }
-//    )
-//    @GetMapping("build-info")
-//    public ResponseEntity<String> buildInfo() {
-//        return ResponseEntity.ok().body(buildVersion);
-//    }
+    @Operation(
+            summary = "Get Build version",
+            description = "Get Build versions details of the accounts microservice"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    }
+    )
+    @GetMapping("build-info")
+    public ResponseEntity<String> buildInfo() {
+        return ResponseEntity.ok().body(buildVersion);
+    }
 //
 //    @Operation(
 //            summary = "Get Java version",
@@ -214,28 +217,28 @@ public class AccountController {
 //        return ResponseEntity.ok().body(environment.getProperty("JAVA_HOME"));
 //    }
 //
-//    @Operation(
-//            summary = "Get Contact Info",
-//            description = "Contact Info details that can be reached out in case of any issues"
-//    )
-//    @ApiResponses({
-//            @ApiResponse(
-//                    responseCode = "200",
-//                    description = "HTTP Status OK"
-//            ),
-//            @ApiResponse(
-//                    responseCode = "500",
-//                    description = "HTTP Status Internal Server Error",
-//                    content = @Content(
-//                            schema = @Schema(implementation = ErrorResponseDto.class)
-//                    )
-//            )
-//    }
-//    )
-//    @GetMapping("/contact-info")
-//    public ResponseEntity<AccountContactInfoDto> accountContactInfo() {
-//        return ResponseEntity.ok().body(accountContactInfoDto);
-//    }
+    @Operation(
+            summary = "Get Contact Info",
+            description = "Contact Info details that can be reached out in case of any issues"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    }
+    )
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountContactInformationDto> accountContactInfo() {
+        return ResponseEntity.ok().body(accountContactInformationDto);
+    }
 
 
 

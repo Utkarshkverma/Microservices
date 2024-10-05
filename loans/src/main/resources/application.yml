@@ -12,3 +12,15 @@ spring:
 
 server:
   port: 8086
+
+build:
+  version : "1.0"
+
+loans:
+  message: "Welcome to QBank related local APIs"
+  contactDetails:
+    name : "Utkarsh Kumar Verma"
+    email : "vermau2k01@gmail.com"
+  onCallSupport:
+    - "+91 9905893940"
+    - "+91 7209806738"
